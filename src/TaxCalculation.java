@@ -1,23 +1,23 @@
 public class TaxCalculation {
-
-    
     public static void main(String[] args) {
 
-        //Asigancion de variables para eliminar valores magicos
-        
-        final double TAX_RATE_HIGH = 0.15;
-        final double TAX_RATE_LOW = 0.19;
-        final int MAXIMO_IMPUESTO =50;
-        double productPrice1 = 100;
-        double productPrice2 = 200;
-        double tax1 = productPrice1 * TAX_RATE_HIGH;
-        double tax2 = productPrice2 * TAX_RATE_LOW;
-        double totalTax = tax1 + tax2;
-        
-        if (totalTax > MAXIMO_IMPUESTO) {
+        //Cambiamos las variables  productPrice1 = 100, productPrice1 = 200 por array
+
+        final int TAX_THRESHOLD = 50; //Se elimina el magic number por una constante 
+
+        double [] productPrice = {100, 200}; //creacion de array que guarda precios
+        double [] percentage = {0.15, 0.10}; //creacion de array que guarda porcentaje de descuento
+
+        double totalTax = 0; //sumador que comienza en cero para guardar el total de impuestos
+        for (int i = 0; i < productPrice.length; i++) { //for para calcular los impuestos 
+            totalTax+= (productPrice[i]*percentage[i]);
+        }
+
+        if (totalTax > TAX_THRESHOLD) { // if-else que verifica el tipo de impuestos
             System.out.println("High total tax: " + totalTax);
         } else {
-            System.out.println("Low tax");
+            System.out.println("Low tax: " + totalTax);
         }
     }
 }
+

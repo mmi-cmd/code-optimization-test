@@ -1,40 +1,32 @@
 import java.util.Scanner;
 public class Store {
-    
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner (System.in);
 
-        //Anàlisis: Venta de productos en una tienda.
-        //Diseño: Mejorar las variables, eliminar los valores magicos y crear constantes para ellas, almacenar precio y cantidades de productos, uso de bubles para calcular totales
+        final int MAYOR_VENTA = 50; //Se elimina el magic number por una constante 
 
-        //Cambiar las variables p1, p2, p3 eliminando estos valores magicos por constantes que aclaren su funcionalidad dentro del codigo
-        //Constantes para eliminar valores magicos
-        final int PRECIO_PRODUCTO_UNO = 15;
-        final int PRECIO__PRODUCTO_DOS = 10;
-        final int PRECIO__PRODUCTO_TRES = 5;
-        final int PRODUCTOS_EXISTENTES = 3;
-        final int INDICADOR_GOODSALES = 50;
-        int suma = 0;
+        //Cambiamos las variables p1=15, p2=10, p3=5 por arrays
+        
+        int [] prices = {15, 10, 5}; //creacion de array que guarda precios
+        int [] amount = new int [3]; //creacion de array que guarda cantidades
 
-        //Creaciòn de array para la cantidad de productos
-        int [] productos  = { 1, 2, 3};
-
-        for (int i = 0; i < productos.length; i++) {
-            System.out.println("Ingrese la cantidad que desea del producto " + productos[i]);
-            productos[i] = scanner.nextInt();
-
-            int total1 = PRECIO_PRODUCTO_UNO * productos[0];
-            int total2 = PRECIO__PRODUCTO_DOS * productos[1];
-            int total3 = PRECIO__PRODUCTO_TRES * productos[3];
-            suma = suma + total1 + total2 + total3;
+        for (int i = 0; i < amount.length; i++) { //for que llena el array para las cantidades de productos
+            System.out.println("Ingrese la cantidad del producto " + (i+1));
+            amount[i] = scanner.nextInt();
         }
 
-        System.out.println("Las ventas totales son: " + suma);
+        //Creamos un for para calcular los totales, con un sumador qu comienza en cero y cambia segun la iteración
+        int totalSales=0;
+        for (int i=0; i < prices.length; i++){
+            totalSales += (prices[i]*amount[i]);
+        }
 
-        if (suma > INDICADOR_GOODSALES) {
-            System.out.println("Good sales performance");
+        if (totalSales > MAYOR_VENTA) {
+            System.out.println("Good sales performance: " + totalSales ); //If-else que verifica la venta
         } else {
-            System.out.println("Low sales performance");
+            System.out.println("Low sales performance " + totalSales);
         }
+        scanner.close();
     }
 }
+
